@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"  href="{% static './gbs_app/register.css' %}">
+    <link rel="stylesheet"href="=https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Registration Form</title>
+</head>
+<body>
+    <div class="container">
+        <header>Registration</header>
+        <form action="{%url 'register'%}"method="post">
+            {% csrf_token %}
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Personal Details</span>
+
+                    <div class="fields">
+                        <div class="input-fields">
+                            <label>Full Name</label>
+                            <input type="text" name="name" placeholder="Enter Name"  onkeypress="return allowOnlyLetters(event,this);" required>
+                        </div>
+
+                        <div class="input-fields">
+                            <label>Date Of Birth</label>
+                            <input type="date" name="date" size="30" class="form-control" min="1935-01-01" max="2002-01-01" placeholder="Enter Birth Date" required>
+                        </div>
+
+                        <div class="input-fields">
+                            <label>Username</label>
+                            <input type="email" name="mail" onblur="ValidateEmail(document.for m1.email)" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter Mail-id" required>
+                            <span style="color:red;font-size:9px;">{% autoescape off%}{{ msg1 }}{% endautoescape%}</span>
+                        </div>
+
+                         <div class="input-fields">
+                            <label>Mobile Number</label>
+                            <input type="text" name="phone" placeholder="Enter Mobile No" minlength="10" maxlength="10"  onkeypress="return isNumberKey(event,this)" required>
+                        </div>
+
+                        <div class="input-fields">
+                            <label>User Type</label>
+                            <input type="text" name="usertype" placeholder="Enter User Type" onkeypress="return allowOnlyLetters(event,this);" required>
+
+                        </div>
+
+                        <div class="input-fields">
+                            <label>Current Address</label>
+                            <input type="text" name="address" placeholder="Enter Current Address" required>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                 <div class="details id">
+                    <span class="title">Password Details</span>
+
+                    <div class="fields">
+                        <div class="input-fields">
+                            <label>Password</label>
+                            <input type="password" name="password" placeholder="Enter Password" required>
+                        </div>
+
+                    </div>
+                     <button class="nextBtn">
+                         <span class="=BtnText">REGISTER</span>
+                         <i class="uil uil-navigator"></i>
+                     </button>
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+<script type="text/javascript">
+
+        function isNumberKey(evt, obj) {
+
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            var value = obj.value;
+            var dotcontains = value.indexOf(".") != -1;
+            if (dotcontains)
+                if (charCode == 46) return false;
+            if (charCode == 46) return true;
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+
+
+
+    </script>
+<script language="Javascript" type="text/javascript">
+
+function allowOnlyLetters(e, t)
+{
+   if (window.event)
+   {
+      var charCode = window.event.keyCode;
+   }
+   else if (e)
+   {
+      var charCode = e.which;
+   }
+   else { return true; }
+   if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+       return true;
+   else
+   {
+      alert("Please enter only alphabets");
+      return false;
+   }
+}
+</script>
+</body>
+</html>

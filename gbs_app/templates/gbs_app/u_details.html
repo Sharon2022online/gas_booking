@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>User Details</title>
+    <link rel="stylesheet"  href="{% static './gbs_app/u_details.css' %}">
+</head>
+<body>
+<div class="mt-5">
+<h2>User Details</h2>
+<form role="form" name="frm" action="{% url 'u_details'%}" method="post">
+        {% csrf_token %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>Mail</th>
+            <th>Mobile</th>
+            <th>UserType</th>
+            <th>Address</th>
+            <th>Update Details</th>
+            <th>Delete Details</th>
+        </tr>
+        <tbody>
+
+    {% for y in user %}
+    <tr>
+        <td>{{ y.name }}</td>
+        <td>{{ y.date_of_birth }}</td>
+        <td>{{ y.mail }}</td>
+        <td>{{ y.mobile_no }}</td>
+        <td>{{ y.usertype }}</td>
+        <td>{{ y.address }}</td>
+
+        <td><a  href="../update?id={{y.id}}">Update</a></td>
+        <td><a  href="delete?id={{y.user_id}}">Delete</a></td>
+    </tr>
+    {% endfor %}
+
+   </tbody>
+    </table>
+    </form>
+</div>
+</body>
+</html>

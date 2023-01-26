@@ -1,0 +1,89 @@
+{% load static %}
+{% block title %}User Details{% endblock %}
+{% block background %}{% endblock %}
+{% block body %}
+
+<center>
+    <h2>Update user details Details</h2>
+   <div class="container">
+    <form role="form" name="frm" action="{% url 'update' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+         <label for="name">Name</label>
+           <input class="form-control" type="text"  id="name" name="name"onkeypress="return allowOnlyLetters(event,this);" value="{{up.name}}" required="required">
+      </div>
+       <div class="form-group">
+         <label for="address">Address</label>
+           <input class="form-control" type="text"  id="address" name="address" value="{{up.address}}" placeholder="Street" required>
+
+      </div>
+
+      <div class="form-group">
+         <label for="mail">Email</label>
+           <input type="mail" class="form-control" onblur="ValidateEmail(document.for m1.email)" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" id="mail" name="mail" value="{{up.mail}}" required></td>
+      </div>
+      <div class="form-group">
+         <label for="date_of_birth">Date of Birth</label>
+           <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" min="1930-12-12" max="2002-12-31" value="{{up.date_of_birth}}"></td>
+      </div>
+      <div class="form-group">
+         <label for="mobile_no">Phone Number</label>
+           <input type="text" class="form-control" id="mobile_no" name="mobile_no" minlength="10" maxlength="10" value="{{up.mobile_no}}" required></td>
+      </div>
+      <div class="form-group">
+         <label for="usertype">User Type</label>
+           <input type="text" class="form-control" id="usertype" name="usertype" value="{{up.usertype}}" required></td>
+      </div>
+      <button type="submit" class="btn btn-info" id="bt" name="bt">Update</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+      <input type="hidden"name="id" value="{{up.id}}">
+       </table>
+    </form>
+   {{msg}}
+   </div>
+</center>
+
+<style>
+
+</style>
+<script type="text/javascript">
+
+        function isNumberKey(evt, obj) {
+
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            var value = obj.value;
+            var dotcontains = value.indexOf(".") != -1;
+            if (dotcontains)
+                if (charCode == 46) return false;
+            if (charCode == 46) return true;
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+
+
+
+    </script>
+<script language="Javascript" type="text/javascript">
+
+function allowOnlyLetters(e, t)
+{
+   if (window.event)
+   {
+      var charCode = window.event.keyCode;
+   }
+   else if (e)
+   {
+      var charCode = e.which;
+   }
+   else { return true; }
+   if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+       return true;
+   else
+   {
+      alert("Please enter only alphabets");
+      return false;
+   }
+}
+</script>
+{% endblock %}

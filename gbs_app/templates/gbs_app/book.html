@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Booking</title>
+    <link rel="stylesheet"  href="{% static './gbs_app/book.css' %}">
+    <link href="https://fonts.googleapis.com/css/family-Raleway:400,600,700,900">
+</head>
+<body>
+<div class="container">
+    <div class="container-form">
+     <form action="book" method="post">
+         {% csrf_token %}
+         <h2 class="heading-heading-yellow">Book Your Refill Now</h2>
+         <div class="form-field">
+             <p>Name:</p>
+             <input type="text" name="name" placeholder="Your Name" onkeypress="return allowOnlyLetters(event,this);" required>
+
+         </div>
+         <div class="form-field">
+             <p>Email:</p>
+             <input type="email" name="email" placeholder="Your Email" required>
+
+         </div>
+         <div class="form-field">
+             <p>Date:</p>
+             <input type="date" name="date" min="2022-12-12" max="2022-12-31" required>
+
+         </div>
+         <div class="form-field">
+             <p>Time:</p>
+             <input type="time" name="time" required>
+
+         </div>
+          <div class="form-field">
+             <p>How Many Cylinders:</p>
+             <select name="cylinder" id="0" required>
+                 <option value="1">1</option>
+                 <option value="2">2</option>
+             </select>
+
+         </div>
+
+            <button class="book">Book Now</button>
+         <div class="image-section">
+             <img src="{%static './gbs_app/gbs2.jpg' %}" width="100">
+         </div>
+     </form>
+
+ </div>
+</div>
+<script language="Javascript" type="text/javascript">
+
+function allowOnlyLetters(e, t)
+{
+   if (window.event)
+   {
+      var charCode = window.event.keyCode;
+   }
+   else if (e)
+   {
+      var charCode = e.which;
+   }
+   else { return true; }
+   if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+       return true;
+   else
+   {
+      alert("Please enter only alphabets");
+      return false;
+   }
+}
+
+
+</script>
+
+<script type="text/javascript">
+
+        function isNumberKey(evt, obj) {
+
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            var value = obj.value;
+            var dotcontains = value.indexOf(".") != -1;
+            if (dotcontains)
+                if (charCode == 46) return false;
+            if (charCode == 46) return true;
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+</script>
+</body>
+</html>
